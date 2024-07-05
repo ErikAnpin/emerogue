@@ -6905,6 +6905,7 @@ static void RememberPartyHeldItems()
 {
     if(Rogue_IsRunActive())
     {
+        CalculatePlayerPartyCount(); // fixes held items being lost sometimes
         u8 i;
 
         for(i = 0; i < PARTY_SIZE; ++i)
