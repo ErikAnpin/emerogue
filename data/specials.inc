@@ -736,6 +736,7 @@ gSpecials::
 	def_special VsSeekerFreezeObjectsAfterChargeComplete
 	def_special Mocha_FollowMonRideCheck
 	def_special Mocha_FollowMonRide
+	def_special Mocha_SkipBagCheck
 	def_special PotionBrewInput
 	def_special IsLegendarySpecies
 	def_special IsCursed

@@ -1230,15 +1230,6 @@ static u8 IgnoreBag_ProcessInput(u8 menuOffset, u8 selection)
     {
         selection ^= 1;
         sArrowPressed = TRUE;
-        //we set the flags here
-        if (selection == 1)
-        {
-            FlagSet(FLAG_IGNORE_STARTERBAG);
-        }
-        else
-        {
-            FlagClear(FLAG_IGNORE_STARTERBAG);
-        }
     }
 
     return selection;

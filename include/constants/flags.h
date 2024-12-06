@@ -696,7 +696,7 @@
 #define FLAG_ROGUE_PRE_RELEASE_COMPAT_WARNING   0x283
 #define FLAG_ROGUE_REWARD_ITEM_MART_DISABLED    0x284
 #define FLAG_POCKET_PC_IS_USED                     0x285
-#define FLAG_IGNORE_STARTERBAG                     0x286 
+#define FLAG_UNUSED_0x286                     0x286 
 #define FLAG_UNUSED_0x287  0x287 // Unused Flag
 #define FLAG_UNUSED_0x288  0x288 // Unused Flag
 #define FLAG_UNUSED_0x289  0x289 // Unused Flag

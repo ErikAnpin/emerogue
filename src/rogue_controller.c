@@ -277,13 +277,22 @@ bool8 Rogue_RollShinyState(u8 shinyRoll)
     // Intentionally don't see shiny state
     u16 shinyOdds = Rogue_GetShinyOdds(shinyRoll);
     u16 rngValue = Random();
+
+    if (RoguePokedex_IsSpeciesLegendary(GetWildChainSpecies()))
+    {
+        shinyOdds = GetEncounterChainShinyOdds(GetWildChainCount());
+    }
     return shinyOdds == 0 ? FALSE : (rngValue % shinyOdds) == 0;
 }
 
 
-static u16 GetEncounterChainShinyOdds(u8 count)
+u16 GetEncounterChainShinyOdds(u8 count)
 {
     u16 baseOdds = Rogue_GetShinyOdds(SHINY_ROLL_DYNAMIC);
+    if (RoguePokedex_IsSpeciesLegendary(GetWildChainSpecies()))
+    {
+        baseOdds = Rogue_GetShinyOdds(SHINY_ROLL_STATIC);
+    }
 
     // By the time we reach 48 encounters, we want to be at max odds
     // Don't start increasing shiny rate until we pass 4 encounters
@@ -293,9 +302,20 @@ static u16 GetEncounterChainShinyOdds(u8 count)
     }
     else
     {
-        u16 range = ((VarGet(VAR_ROGUE_ACTIVE_POKEBLOCK) == ITEM_POKEBLOCK_SHINY) ? 24 : 48) - 4;
+        u16 range;
+        u16 targetOdds;
+        if (RoguePokedex_IsSpeciesLegendary(GetWildChainSpecies()))
+        {
+            range = 100 - 4; // Can't use pokeblock for this
+            targetOdds = 1; // Guaranteed at max chain
+        }
+        else
+        {
+            range = ((VarGet(VAR_ROGUE_ACTIVE_POKEBLOCK) == ITEM_POKEBLOCK_SHINY) ? 24 : 48) - 4;
+            targetOdds = 16;
+        }
+
         u16 t = min(count - 4, range);
-        u16 targetOdds = 16;
 
         return (targetOdds * t + baseOdds * (range - t)) / range;
     }

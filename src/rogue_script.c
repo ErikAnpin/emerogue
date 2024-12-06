@@ -90,6 +90,7 @@ static const u8 sStatNamesTable[NUM_STATS][13] = // a;t versopm pf gStatNamesTab
 
 static u8 const sText_The[] = _(" the ");
 static u8 const sText_TheShiny[] = _(" the shiny ");
+static u8 const sText_TheShinyNoNick[] = _("the shiny ");
 
 bool8 Rogue_CheckPartyHasRoomForMon(void)
 {
@@ -2014,13 +2015,18 @@ void Rogue_BufferSafariMonInfo()
 
     StringCopy_Nickname(gStringVar1, gRogueSaveBlock->safariMons[safariIndex].nickname);
 
-    if(gRogueSaveBlock->safariMons[safariIndex].shinyFlag || StringCompareN(gStringVar1, speciesName, POKEMON_NAME_LENGTH) != 0)
+    if((gRogueSaveBlock->safariMons[safariIndex].shinyFlag && StringCompareN(gStringVar1, speciesName, POKEMON_NAME_LENGTH) != 0) || StringCompareN(gStringVar1, speciesName, POKEMON_NAME_LENGTH) != 0)
     {
         if(gRogueSaveBlock->safariMons[safariIndex].shinyFlag)
             StringAppend(gStringVar1, sText_TheShiny);
         else
             StringAppend(gStringVar1, sText_The);
 
+        StringAppend(gStringVar1, speciesName);
+    }
+    else if(gRogueSaveBlock->safariMons[safariIndex].shinyFlag && StringCompareN(gStringVar1, speciesName, POKEMON_NAME_LENGTH) == 0) 
+    {
+        StringCopy(gStringVar1, sText_TheShinyNoNick);
         StringAppend(gStringVar1, speciesName);
     }
 }
@@ -2409,4 +2415,13 @@ void Rogue_CanActivatePikinEasterEgg()
 void PotionBrewInput()
 {
     StartBrewInput();
+}
+
+void Mocha_SkipBagCheck()
+{
+    gSpecialVar_Result = FALSE;
+    if (gSaveBlock2Ptr->optionsIgnoreBag == OPTIONS_IGNOREBAG_ON)
+    {
+        gSpecialVar_Result = TRUE;
+    }
 }

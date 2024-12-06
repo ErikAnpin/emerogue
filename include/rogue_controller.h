@@ -226,4 +226,6 @@ void Rogue_ModifyTutorMoves(struct Pokemon* mon, u8 tutorType, u8* count, u8* hi
 void Rogue_CorrectMonDetails(struct Pokemon* party, u8 count);
 void Rogue_CorrectBoxMonDetails(struct BoxPokemon* mon);
 
+u16 GetEncounterChainShinyOdds(u8 count);
+
 #endif
