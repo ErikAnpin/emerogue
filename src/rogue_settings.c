@@ -509,7 +509,7 @@ static const u16 sStackableCurseEffects[] = {
 
 float Rogue_CalculateRewardMultiplier()
 {
-    float multiplier = 1.0; // Base multiplier
+    float multiplier = 10; // Base multiplier
 
     // Trainer multiplier
     u8 trainerDifficulty = Rogue_GetConfigRange(CONFIG_RANGE_TRAINER);
@@ -517,53 +517,53 @@ float Rogue_CalculateRewardMultiplier()
     switch(trainerDifficulty)
     {
         case DIFFICULTY_LEVEL_EASY:
-            multiplier += 0.0;
+            multiplier += 0;
             break;
         case DIFFICULTY_LEVEL_AVERAGE:
-            multiplier += 0.2;
+            multiplier += 2;
             break;
         case DIFFICULTY_LEVEL_HARD:
-            multiplier += 0.4;
+            multiplier += 4;
             break;
         case DIFFICULTY_LEVEL_BRUTAL:
-            multiplier += 0.8;
+            multiplier += 8;
             break;
     }
 
     // Toggles checker. It's messy rn but it works
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_RELEASE_MONS) == TRUE)
     {
-      multiplier += 0.3;   // Permadeath multiplier     
+      multiplier += 3;   // Permadeath multiplier     
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_AFFECTION) == FALSE)
     {
-       multiplier += 0.1;   // No affection multiplier
+       multiplier += 1;   // No affection multiplier
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_SWITCH_MODE) == FALSE)
     {
-        multiplier += 0.2;   // Set mode multiplier
+        multiplier += 2;   // Set mode multiplier
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_OVER_LVL) == FALSE)
     {
-        multiplier += 0.3;  // No overleveling multiplier
+        multiplier += 3;  // No overleveling multiplier
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_EV_GAIN) == FALSE)
     {
-        multiplier += 0.2;  // No EVs multiplier
+        multiplier += 2;  // No EVs multiplier
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_DIVERSE_TRAINERS) == TRUE)
     {
-        multiplier += 0.4;   // Diverse mons multiplier
+        multiplier += 4;   // Diverse mons multiplier
     }
 
     if(Rogue_GetConfigToggle(CONFIG_TOGGLE_BAG_WIPE) == TRUE)
     {
-        multiplier += 0.5;   // Fresh start multiplier
+        multiplier += 5;   // Fresh start multiplier
     }
 
     // Curses
@@ -575,7 +575,7 @@ float Rogue_CalculateRewardMultiplier()
     {
         if(IsCurseActive(sStaticCurseEffects[i]))
         {
-            multiplier += 0.2;
+            multiplier += 2;
         }
     }
 
@@ -587,15 +587,15 @@ float Rogue_CalculateRewardMultiplier()
             u8 curseAmount = GetCurseValue(sStackableCurseEffects[i]);
             if(curseAmount == 1)
             {
-                multiplier += 0.1;
+                multiplier += 1;
             }
             else if(curseAmount == 2)
             {
-                multiplier += 0.2;
+                multiplier += 2;
             }
             else if(curseAmount >= 3)
             {
-                multiplier += 0.3;
+                multiplier += 3;
             }
         }
     }
@@ -658,19 +658,19 @@ static u8 Rogue_CalcRewardDifficultyPreset()
         {
             u8 multiplier = Rogue_CalculateRewardMultiplier();
 
-            if(multiplier <= 1.5)
+            if(multiplier <= 15)
             {
                 rewardLevel = DIFFICULTY_LEVEL_EASY;
             }
-            else if(multiplier >= 1.5 && multiplier < 2.5)
+            else if(multiplier >= 15 && multiplier < 25)
             {
                 rewardLevel = DIFFICULTY_LEVEL_AVERAGE;
             }
-            else if(multiplier >= 2.5 && multiplier < 3.5)
+            else if(multiplier >= 25 && multiplier < 35)
             {
                 rewardLevel = DIFFICULTY_LEVEL_HARD;
             }
-            else if(multiplier >= 3.5)
+            else if(multiplier >= 35)
             {
                 rewardLevel = DIFFICULTY_LEVEL_BRUTAL;
             }

@@ -1491,18 +1491,23 @@ static void SetMenuItemValue(u8 menuItem, u8 value)
     
     case MENUITEM_DIFFICULTY_REWARD:
         gSaveBlock2Ptr->optionsDifficultyRewardMode = value;
+        break;
 
     case MENUITEM_RIDEMON_CONTROL:
         gSaveBlock2Ptr->optionsRidemonControlMode = value;
+        break;
 
     case MENUITEM_SHOW_MONEY:
         gSaveBlock2Ptr->optionsShowMoney = value;
+        break;
     
     case MENUITEM_QUICK_ROUTE:
         gSaveBlock2Ptr->optionsQuickRoute = value;
+        break;
 
     case MENUITEM_IGNORE_BAG:
         gSaveBlock2Ptr->optionsIgnoreBag = value;
+        break;
     }
 }
 

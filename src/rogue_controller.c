@@ -6946,8 +6946,8 @@ static void TryRestorePartyHeldItems(bool8 allowThief)
         {
             item = gRogueRun.partyHeldItems[i];
 
-            // Ignore fainted mons
-            if(GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0)
+            // Ignore fainted mons, unless release fainted mon toggle is false
+            if(GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0 && Rogue_ShouldReleaseFaintedMons())
                 continue;
 
             // We're still holding the same item no need to continue

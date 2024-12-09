@@ -141,7 +141,7 @@ static void Task_HowManyHandleInput(u8 taskId)
         {
             PlaySE(SE_SELECT);
             // Since this task is handled per frame, I think it's wise to just put the variables here.
-            u8 totalCost = tItemCount * berryCost;
+            u16 totalCost = tItemCount * berryCost;
             RemoveBagItem(ITEM_ORAN_BERRY, totalCost);
             AddBagItem(potionType, tItemCount);
             Rogue_PushPopup_LostItem(ITEM_ORAN_BERRY, totalCost);
@@ -164,9 +164,9 @@ static void PrintBrewCost(u8 taskId)
     FillWindowPixelBuffer(winCost, PIXEL_FILL(1)); //Clears the previous text. This window updates often so it's needed.
 
     //xAMOUNT
-    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, SHOP_ITEM_CAPACITY_DIGITS);
+    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, 3); // I sure hope this is enough
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
-    AddTextPrinterParameterized(winCost, FONT_NORMAL, gStringVar4, 8, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(winCost, FONT_NORMAL, gStringVar4, 5, 1, TEXT_SKIP_DRAW, NULL);
 
     //Berry in bag - berry needed
     ConvertIntToDecimalStringN(gStringVar1, berryCount, STR_CONV_MODE_RIGHT_ALIGN, MAX_ITEM_DIGITS + 1);

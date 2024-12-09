@@ -1957,7 +1957,7 @@ static u8 const sText_IndicatorEasy[] = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}");
 static u8 const sText_IndicatorAverage[] = _("{COLOR LIGHT_BLUE}{SHADOW LIGHT_GREEN}");
 static u8 const sText_IndicatorHard[] = _("{COLOR LIGHT_RED}{SHADOW LIGHT_GREEN}");
 static u8 const sText_IndicatorBrutal[] = _("{COLOR LIGHT_RED}{SHADOW RED}");
-static u8 const sText_Multiplier[] = _("{STR_VAR_1}{STR_VAR_2}x");
+static u8 const sText_Multiplier[] = _("{STR_VAR_1}{STR_VAR_2}.{STR_VAR_3}x");
 
 static void DrawDescriptionOptionMenuText(u8 submenu, u8 selection)
 {
@@ -2000,31 +2000,35 @@ static void DrawDescriptionOptionMenuText(u8 submenu, u8 selection)
         if(gSaveBlock2Ptr->optionsDifficultyRewardMode == OPTIONS_DIFFICULTY_REWARD_MODE_MULTIPLIER)
         {
             //Get multiplier
-            float multiplier = Rogue_CalculateRewardMultiplier();
-            ConvertFloatToDecimalStringN(gStringVar2, multiplier, 1);
+            u16 multiplier = Rogue_CalculateRewardMultiplier();
+
+            int wholeNum = multiplier / 10;
+            int fraction = (multiplier % 10);
+
+            ConvertIntToDecimalStringN(gStringVar2, wholeNum, STR_CONV_MODE_LEFT_ALIGN, 2);
+            ConvertIntToDecimalStringN(gStringVar3, fraction, STR_CONV_MODE_LEFT_ALIGN, 2);
 
             //I could've just used the switch method, but for some reason it won't update correctly when I change the toggles
             const u8* rewardIndicator = sText_IndicatorEasy;
-            if(multiplier <= 1.5)
+            if(multiplier <= 15)
             {
                 rewardIndicator = sText_IndicatorEasy;
             }
-            else if(multiplier >= 1.5 && multiplier < 2.5)
+            else if(multiplier >= 15 && multiplier < 25)
             {
                 rewardIndicator = sText_IndicatorAverage;
             }
-            else if(multiplier >=  2.5 && multiplier < 3.5)
+            else if(multiplier >=  25 && multiplier < 35)
             {
                 rewardIndicator = sText_IndicatorHard;
             }
-            else if(multiplier >=  3.5)
+            else if(multiplier >=  35)
             {
                 rewardIndicator = sText_IndicatorBrutal;
             }
-
             StringExpandPlaceholders(gStringVar1, rewardIndicator);
-            StringExpandPlaceholders(gStringVar3, sText_Multiplier);
-            str = StringAppend(str, gStringVar3);
+            StringExpandPlaceholders(gStringVar4, sText_Multiplier);
+            str = StringAppend(str, gStringVar4);
 
         }
         else

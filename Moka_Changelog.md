@@ -1,5 +1,24 @@
 # CHANGELOG
 
+9/12/2024
+- Adjusted the potion brewing text position to fit 3 digits
+- Fixed potion cauldron not correctly reducing the berry amount during large batches of brewing
+- Fixed held item not getting refunded if release mon on fainted toggle is disabled
+
+8/12/2024
+- Fixed QoL settings not sticking (For real)
+- Walking over a bridge shouldn't spawn water pokemon now
+- Very minor fix on Waterfront0 map, you can't land on water while flying on certain tiles
+- Fixed the difficulty reward multiplier issue due to float fuckery. It should give you hard reward on 2.5, etc. as intended. Previously it only worked if you're way above the actual required multiplier
+
+7/12/2024
+- Added the chaining system for legends. Guaranteed shiny at 100 chain
+- Sylveon's evo is reverted back to simply know a fairy move, except it's working now lol
+- Fixed Soul heart giving the wrong mon spAtk up
+- Small fix when retrieving a shiny legendary. No more Xerneas the Shiny Xerneas
+~~- Fixed the QoL settings not sticking?~~
+- Fixed Cursed body activating on substitute
+
 20/11/2024
 - Fixed a lil mistake I left in during debugging. Now taking legendary mon from Birch's lab isn't guaranteed to be cursed unless you're deep into the run
 - Tera orb will now recharge in victory lap, once per fight
