@@ -270,16 +270,16 @@ script Rogue_Interior_Restaurant_TalkShinyChef
         setvar(VAR_0x8004, 0)
         special(BufferMonNickname)
         msgbox(format("Would you like me to bake a Shiny Pie for you to share with {STR_VAR_1}?"), MSGBOX_YESNO)
-
-        if(var(VAR_RESULT) == YES)
-        {
-            special(Rogue_CanMakeShinyPieFor)
-            if(var(VAR_RESULT) == NO)
-            {
-                msgbox(format("I'm afraid you haven't got any Shiny Pokédex data for that Pokémon."))
-                setvar(VAR_RESULT, 2)
-            }
-        }
+        
+        //if(var(VAR_RESULT) == YES)
+        //{
+        //    special(Rogue_CanMakeShinyPieFor)
+        //    if(var(VAR_RESULT) == NO)
+        //    {
+        //        msgbox(format("I'm afraid you haven't got any Shiny Pokédex data for that Pokémon."))
+        //        setvar(VAR_RESULT, 2)
+        //    }
+        //}
 
         // Select ingredients
         if(var(VAR_RESULT) == YES)
