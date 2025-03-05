@@ -518,10 +518,22 @@ void RogueDebug_GiveDynamicUniqueMon()
 {
 #ifdef ROGUE_DEBUG
     struct Pokemon* mon = &gEnemyParty[0];
+    u32 temp = 0;
+    u32 shiny = 0;
     u32 customMonId = RogueGift_CreateDynamicMonId(gSpecialVar_0x8004, SPECIES_AIPOM);
 
-    RogueGift_CreateMon(customMonId, mon, SPECIES_AIPOM, STARTER_MON_LEVEL, 0);
+    RogueGift_CreateMon(customMonId, mon, SPECIES_IRON_HANDS, STARTER_MON_LEVEL, 31);
+
+    // Set met location
+    temp = MAPSEC_POKEMON_HUB;
+    SetMonData(mon, MON_DATA_MET_LOCATION, &temp);
+
+    // Set shiny state
+    shiny = 1;
+    SetMonData(mon, MON_DATA_IS_SHINY, &shiny);
+
     GiveTradedMonToPlayer(mon);
+
 #endif
 }
 
@@ -1551,15 +1563,15 @@ void Rogue_FeedMonPie()
             switch (pieSize)
             {
             case PIE_SIZE_SMALL:
-                temp = min(temp + 1, 31);
+                temp = min(temp + 31, 31);
                 break;
 
             case PIE_SIZE_MEDIUM:
-                temp = min(temp + 5, 31);
+                temp = min(temp + 31, 31);
                 break;
 
             case PIE_SIZE_LARGE:
-                temp = min(temp + 10, 31);
+                temp = min(temp + 31, 31);
                 break;
             }
         }
@@ -1568,15 +1580,15 @@ void Rogue_FeedMonPie()
             switch (pieSize)
             {
             case PIE_SIZE_SMALL:
-                temp = temp <= 1 ? 0 : (temp - 1);
+                temp = temp <= 31 ? 0 : (temp - 1);
                 break;
 
             case PIE_SIZE_MEDIUM:
-                temp = temp <= 5 ? 0 : (temp - 5);
+                temp = temp <= 31 ? 0 : (temp - 5);
                 break;
 
             case PIE_SIZE_LARGE:
-                temp = temp <= 10 ? 0 : (temp - 10);
+                temp = temp <= 31 ? 0 : (temp - 10);
                 break;
             }
         }
