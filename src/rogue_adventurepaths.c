@@ -959,7 +959,8 @@ static void GenerateRoomInstance(u8 roomId, u8 roomType)
                 u8 legendId = Rogue_GetCurrentLegendaryEncounterId();
                 u16 species = gRogueRun.legendarySpecies[legendId];
                 gRogueAdvPath.rooms[roomId].roomParams.roomIdx = Rogue_GetLegendaryRoomForSpecies(species);
-                gRogueAdvPath.rooms[roomId].roomParams.perType.legendary.shinyState = Rogue_RollShinyState(SHINY_ROLL_STATIC);
+                gRogueAdvPath.rooms[roomId].roomParams.perType.legendary.shinyState = Rogue_RollShinyState(SHINY_ROLL_STATIC);                
+                //gRogueAdvPath.rooms[roomId].roomParams.perType.legendary.shinyState = 1;
             }
             break;
 
@@ -980,6 +981,7 @@ static void GenerateRoomInstance(u8 roomId, u8 roomType)
             gRogueAdvPath.rooms[roomId].roomParams.roomIdx = 0;
             gRogueAdvPath.rooms[roomId].roomParams.perType.wildDen.species = Rogue_SelectWildDenEncounterRoom();
             gRogueAdvPath.rooms[roomId].roomParams.perType.wildDen.shinyState = Rogue_RollShinyState(SHINY_ROLL_STATIC);
+            //gRogueAdvPath.rooms[roomId].roomParams.perType.wildDen.shinyState = 1;
             break;
 
         case ADVPATH_ROOM_HONEY_TREE:
