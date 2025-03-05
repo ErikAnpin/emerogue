@@ -1263,10 +1263,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontAnimFrames = sAnims_Floette,                                      \
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,                                     \
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                              \
-        PALETTES(Floette ##form##Flower),                                        \
+        PALETTES(Floette ##form##Flower),                                       \
         ICON(Floette##form##Flower, iconPal),                                   \
         .footprint = gMonFootprint_Floette,                                     \
-        .formSpeciesIdTable = sFloetteFormSpeciesIdTable
+        .formSpeciesIdTable = sFloetteFormSpeciesIdTable,                       \
+        .formChangeTable = sFloetteFormChangeTable                              
 
 #define FLOETTE_NORMAL_INFO(form, FORM, iconPal)                                                \
         .baseHP        = 54,                                                                    \
