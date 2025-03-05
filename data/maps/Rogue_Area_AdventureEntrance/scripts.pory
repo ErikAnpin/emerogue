@@ -559,21 +559,6 @@ script Rogue_ReturnAdventureInternal
         call(Common_EventScript_SaveGame)
     }
 
-    special(Rogue_ShouldNursePromptConfigLabSettingsChange)
-    if(var(VAR_RESULT) == YES)
-    {
-        msgbox(format("{PLAYER}, before you head off-"), MSGBOX_DEFAULT)
-
-        if(var(VAR_0x8004) == 1)
-        {
-            msgbox(format("I just wanted to remind you that you can adjust your Difficulty in the Config Lab to make it more of a Challenge if you'd like.\pYou can edit individual controls too, if you'd prefer to take smaller Difficulty steps rather than one giant leap."), MSGBOX_DEFAULT)
-        }
-        else
-        {
-            msgbox(format("I just wanted to remind you that you can adjust your Difficulty in the Config Lab to make it more manageable if you'd like.\pYou can edit individual controls too, if you'd prefer to take smaller Difficulty steps rather than one giant leap."), MSGBOX_DEFAULT)
-        }
-    }
-
     msgbox(format("Come speak to me, once you're ready for your next adventure."), MSGBOX_DEFAULT)
 
     releaseall
